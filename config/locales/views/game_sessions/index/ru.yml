@@ -1,0 +1,4 @@
+ru:
+  game_sessions:
+    index:
+      header: "Завершенные игры"

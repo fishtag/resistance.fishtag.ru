@@ -1,0 +1,11 @@
+ru:
+  activerecord:
+    errors:
+      models:
+        game_session:
+          attributes:
+            players:
+              too_short: "В игре должно быть минимум 5 человек"
+              too_long: "В игре должно быть максимум 10 человек"
+            play_date:
+              blank: "Дата игры должна быть выставлена"
