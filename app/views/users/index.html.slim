@@ -9,7 +9,7 @@ table
   - users.each do |user|
     tr
       td= user.name
-      td= user.finished_game_sessions_count
+      td= user.finished_game_sessions.size
       td= user.won_game_sessions.size
       td= user.lost_game_sessions.size
       td= user.win_percentage.round

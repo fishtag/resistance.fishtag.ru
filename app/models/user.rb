@@ -7,11 +7,11 @@ class User < ActiveRecord::Base
            source: :game_session
 
   def won_game_sessions
-    finished_game_sessions.select { |game| game.winner }
+    finished_game_sessions.where('"game_sessions"."winner" = "game_sessions_users"."fraction"')
   end
 
   def lost_game_sessions
-    finished_game_sessions.to_a - won_game_sessions
+    finished_game_sessions.where('"game_sessions"."winner" != "game_sessions_users"."fraction"')
   end
 
   def win_percentage
