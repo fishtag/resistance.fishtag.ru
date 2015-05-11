@@ -26,7 +26,9 @@ gem 'js-routes'
 gem 'gon'
 gem 'unicorn', require: false
 gem 'simple_form'
+gem 'enum_help'
 gem 'cocoon'
+gem 'responders'
 
 group :production do
   # Use Uglifier as compressor for JavaScript assets

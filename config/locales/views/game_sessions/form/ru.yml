@@ -1,0 +1,4 @@
+ru:
+  game_sessions:
+    form:
+      add_game_sessions_user: "Добавить нового игрока"

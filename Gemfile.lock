@@ -61,6 +61,7 @@ GEM
     connection_pool (2.2.0)
     debug_inspector (0.0.2)
     decent_exposure (2.3.2)
+    enum_help (0.0.14)
     erubis (2.7.0)
     execjs (2.5.2)
     globalid (0.3.5)
@@ -136,6 +137,8 @@ GEM
       react-source (~> 0.13)
     react-source (0.13.2)
     request_store (1.1.0)
+    responders (2.1.0)
+      railties (>= 4.2.0, < 5)
     sass (3.4.13)
     sass-rails (5.0.3)
       railties (>= 4.0.0, < 5.0)
@@ -187,6 +190,7 @@ DEPENDENCIES
   cocoon
   coffee-rails (~> 4.1.0)
   decent_exposure
+  enum_help
   gon
   jbuilder (~> 2.0)
   jquery-rails
@@ -195,6 +199,7 @@ DEPENDENCIES
   rails (= 4.2.1)
   rails_12factor
   react-rails
+  responders
   sass-rails (~> 5.0)
   simple_form
   slim

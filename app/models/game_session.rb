@@ -4,7 +4,9 @@ class GameSession < ActiveRecord::Base
   has_many :players, through: :game_sessions_users, source: :user
 
   validates :play_date, presence: true
-  validates :players, length: { in: 5..10 }
+  validates :game_sessions_users, length: { in: 5..10 }
+
+  accepts_nested_attributes_for :game_sessions_users
 
   # Returns winner fraction
   # Return value is one of +GAME_FRACTIONS+ value (:spies or :resistance)

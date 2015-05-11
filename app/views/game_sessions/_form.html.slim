@@ -1,0 +1,9 @@
+= simple_form_for game_session do |f|
+  = f.input :play_date, as: :string
+
+  = f.simple_fields_for :game_sessions_users do |user|
+    = render 'game_sessions_user_fields', f: user
+  .links
+    = link_to_add_association t('.add_game_sessions_user'), f, :game_sessions_users
+
+  = f.submit
