@@ -31,6 +31,10 @@ class GameSession < ActiveRecord::Base
 
   private
 
+  # Sets #winner attribute according to GameSession rounds' results.
+  # Always returns +true+
+  #
+  # @return TrueClass
   def assign_winner
     self.winner = finished? ? round_winners.max_by { |_fraction, wins| wins }.first : nil
 
@@ -40,8 +44,9 @@ class GameSession < ActiveRecord::Base
 
   # Sets #finished attribute according to +GameSession+ state
   # +GameSession+ is finished if any fraction has 3 won rounds
+  # Always returns +true+
   #
-  # @return [TrueClass, FalseClass]
+  # @return TrueClass
   def assign_finished
     self.finished = round_winners.values.select { |wins_count| wins_count > 2 }.any?
 
