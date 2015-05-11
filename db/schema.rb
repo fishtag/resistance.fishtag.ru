@@ -11,12 +11,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150502141423) do
+ActiveRecord::Schema.define(version: 20150511103540) do
 
   create_table "game_sessions", force: :cascade do |t|
     t.date     "play_date"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.boolean  "finished",   default: false, null: false
   end
 
   create_table "game_sessions_users", force: :cascade do |t|
@@ -55,6 +56,7 @@ ActiveRecord::Schema.define(version: 20150502141423) do
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "game_sessions_count", default: 0, null: false
   end
 
 end

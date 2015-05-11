@@ -1,0 +1,8 @@
+ru:
+  users:
+    index:
+      name: Имя игрока
+      total_played: Игры
+      total_won: Победы
+      total_lost: Поражения
+      win_percent: Процент побед

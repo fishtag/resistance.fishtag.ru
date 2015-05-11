@@ -1,0 +1,15 @@
+table
+  tr
+    th= t('.name')
+    th= t('.total_played')
+    th= t('.total_won')
+    th= t('.total_lost')
+    th= t('.win_percent')
+
+  - users.each do |user|
+    tr
+      td= user.name
+      td= user.finished_game_sessions_count
+      td= user.won_game_sessions.size
+      td= user.lost_game_sessions.size
+      td= user.win_percentage.round

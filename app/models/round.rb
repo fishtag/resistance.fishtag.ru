@@ -8,6 +8,9 @@ class Round < ActiveRecord::Base
   validates :winner, presence: true, inclusion: { in: Round.winners.keys }
   validate :participants_in_game?
 
+  after_save :save_game_session
+  before_destroy :save_game_session, prepend: true
+
   protected
 
   def participants_in_game?
@@ -16,5 +19,10 @@ class Round < ActiveRecord::Base
         errors.add(:participants, "#{participant.name} is not in players list")
       end
     end
+  end
+
+  # Hack for autosaving +game_session+
+  def save_game_session
+    game_session.save
   end
 end
