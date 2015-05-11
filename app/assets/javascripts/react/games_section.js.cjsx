@@ -2,14 +2,7 @@
   displayName: 'gamesSection'
 
   getInitialState: ->
-    games: []
-
-  componentDidMount: ->
-    @_fetchGames()
-
-  _fetchGames: ->
-    $.getJSON Routes.game_sessions_path(), (data) =>
-      @setState(games: data.game_sessions)
+    games: gon.game_sessions
 
   render: ->
     gamesNode =

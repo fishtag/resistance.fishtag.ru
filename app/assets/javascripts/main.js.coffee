@@ -1,0 +1,2 @@
+$ ->
+  $('#container').nested()

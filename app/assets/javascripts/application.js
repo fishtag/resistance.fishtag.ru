@@ -12,8 +12,11 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery.nested
 //= require js-routes
 //= require react
 //= require react_ujs
 //= require turbolinks
+//= require cocoon
 //= require_tree ./react
+//= require main

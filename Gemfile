@@ -23,7 +23,10 @@ gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.0'
 gem 'js-routes'
+gem 'gon'
 gem 'unicorn', require: false
+gem 'simple_form'
+gem 'cocoon'
 
 group :production do
   # Use Uglifier as compressor for JavaScript assets

@@ -6,6 +6,8 @@
 
     cardClasses = classSet
       'game-card': true
+      'box': true
+      'size43': true
       'spies-victory': @props.data.winner == 'spies'
       'resistance-victory': @props.data.winner == 'resistance'
 
