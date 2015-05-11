@@ -3,22 +3,17 @@ class GameSession < ActiveRecord::Base
   has_many :game_sessions_users, -> { eager_load(:user) }, dependent: :destroy, inverse_of: :game_session
   has_many :players, through: :game_sessions_users, source: :user
 
+  enum winner: GAME_FRACTIONS
+
   validates :play_date, presence: true
   validates :game_sessions_users, length: { in: 5..10 }
 
   before_save :assign_finished
+  before_save :assign_winner
 
   scope :finished, -> { where(finished: true) }
 
   accepts_nested_attributes_for :game_sessions_users
-
-  # Returns winner fraction
-  # Return value is one of +GAME_FRACTIONS+ value (:spies or :resistance)
-  #
-  # @return [Symbol, NilClass]
-  def winner
-    @winner ||= select_winner
-  end
 
   # Iterates +GameSession+ rounds and returns their winners as Hash:
   #
@@ -36,10 +31,11 @@ class GameSession < ActiveRecord::Base
 
   private
 
-  def select_winner
-    return unless finished?
+  def assign_winner
+    self.winner = finished? ? round_winners.max_by { |_fraction, wins| wins }.first : nil
 
-    round_winners.max_by { |_fraction, wins| wins }.first
+    # Record should be saved anyway
+    true
   end
 
   # Sets #finished attribute according to +GameSession+ state
