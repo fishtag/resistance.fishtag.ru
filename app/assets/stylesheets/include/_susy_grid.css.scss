@@ -1,0 +1,18 @@
+@import "include/susy_config";
+
+.container {
+  @include container;
+  margin-bottom: 2em;
+}
+
+@for $i from 1 through 12 {
+  .column-#{$i} {
+    @include span($i of 12);
+
+    &.nest {
+      @include span($i of 12 nest);
+      padding-left: 0;
+      padding-right: 0;
+    }
+  }
+}

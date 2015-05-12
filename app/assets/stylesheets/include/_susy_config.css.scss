@@ -1,0 +1,9 @@
+@import "susy";
+
+$susy: (
+  container: 100%,
+  columns: 12,
+  gutters: 0.25,
+  output: float,
+  gutter-position: inside
+);
