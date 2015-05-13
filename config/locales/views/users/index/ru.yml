@@ -6,3 +6,9 @@ ru:
       total_won: Победы
       total_lost: Поражения
       win_percent: Процент побед
+      total_as_spy: "Игры за Шпионов"
+      won_as_spy: "Победы за шпионов"
+      total_as_resistance: "Игры за сопротивление"
+      won_as_resistance: "Победы за сопротивление"
+      spy_win_percent: "Процент побед за Шпионов"
+      resistance_win_percent: "Процент побед за Сопротивление"

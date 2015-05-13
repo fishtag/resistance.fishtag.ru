@@ -4,7 +4,13 @@ table
     th= t('.total_played')
     th= t('.total_won')
     th= t('.total_lost')
+    th= t('.total_as_spy')
+    th= t('.won_as_spy')
+    th= t('.total_as_resistance')
+    th= t('.won_as_resistance')
     th= t('.win_percent')
+    th= t('.spy_win_percent')
+    th= t('.resistance_win_percent')
 
   - users.each do |user|
     tr
@@ -12,4 +18,10 @@ table
       td= user.finished_game_sessions.size
       td= user.won_game_sessions.size
       td= user.lost_game_sessions.size
-      td= user.win_percentage.round
+      td= user.spies_game_sessions.size
+      td= user.won_spies_game_sessions.size
+      td= user.resistance_game_sessions.size
+      td= user.won_resistance_game_sessions.size
+      td= user.win_percentage
+      td= user.spy_win_percentage
+      td= user.resistance_win_percentage
