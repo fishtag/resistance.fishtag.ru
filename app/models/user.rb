@@ -1,18 +1,5 @@
 class User < ActiveRecord::Base
-  has_many :game_sessions_users
-  has_many :game_sessions, through: :game_sessions_users
-  has_many :finished_game_sessions,
-           -> { where(finished: true) },
-           through: :game_sessions_users,
-           source: :game_session
-
-  def won_game_sessions
-    finished_game_sessions.where('"game_sessions"."winner" = "game_sessions_users"."fraction"')
-  end
-
-  def lost_game_sessions
-    finished_game_sessions.where('"game_sessions"."winner" != "game_sessions_users"."fraction"')
-  end
+  include GameSessionsAssociations
 
   def win_percentage
     return 0 if finished_game_sessions.size.zero?
