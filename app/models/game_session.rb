@@ -7,8 +7,9 @@ class GameSession < ActiveRecord::Base
 
   validates :play_date, presence: true
   validates :game_sessions_users, length: { in: 5..10 }
+  validates_associated :game_sessions_users
 
-  before_save :assign_finished
+  before_validation :assign_finished
   before_save :assign_winner
 
   scope :finished, -> { where(finished: true) }
