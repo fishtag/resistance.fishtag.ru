@@ -2,7 +2,8 @@ class GameSessionsController < ApplicationController
   OBJECT_NAME = :game_session
   PERMITTED_ATTRIBUTES = [
     :play_date,
-    :game_sessions_users_attributes => %i(id user_id fraction _destroy)]
+    :game_sessions_users_attributes => %i(id user_id fraction _destroy),
+    :rounds_attributes => [:id, :winner, :participant_ids => []]]
 
   respond_to :html
 
@@ -32,6 +33,8 @@ class GameSessionsController < ApplicationController
   end
 
   def edit
+    5.times { game_session.rounds.build } unless game_session.rounds.any?
+
     respond_with game_session
   end
 

@@ -6,4 +6,9 @@
   .links
     = link_to_add_association t('.add_game_sessions_user'), f, :game_sessions_users
 
+  - if game_session.persisted?
+    = f.simple_fields_for :rounds do |round|
+      = render 'round_fields', f: round
+    .links
+      = link_to_add_association t('.add_round'), f, :rounds
   = f.submit

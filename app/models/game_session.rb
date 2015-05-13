@@ -14,6 +14,7 @@ class GameSession < ActiveRecord::Base
   scope :finished, -> { where(finished: true) }
 
   accepts_nested_attributes_for :game_sessions_users
+  accepts_nested_attributes_for :rounds, reject_if: :all_blank
 
   # Iterates +GameSession+ rounds and returns their winners as Hash:
   #
