@@ -7,7 +7,7 @@ class User
         games_won_total = games_won_as_spy = games_won_as_resistance = 0
         total_resistance_games = total_spy_games = total_games = 0
 
-        finished_game_sessions.reverse_order.limit(25).map do |game|
+        finished_game_sessions.map do |game|
           total_games += 1
           total_spy_games += 1 if spies_game_sessions.include?(game)
           total_resistance_games += 1 if resistance_game_sessions.include?(game)
@@ -22,7 +22,7 @@ class User
             spies_win_percentage: (games_won_as_spy / total_spy_games.to_f * 100).round(2),
             resistance_win_percentage: (games_won_as_resistance / total_resistance_games.to_f * 100).round(2)
           }
-        end
+        end.last(25)
       end
     end
   end
