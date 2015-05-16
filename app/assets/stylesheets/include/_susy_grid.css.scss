@@ -15,4 +15,8 @@
       padding-right: 0;
     }
   }
+
+  .push-#{$i} {
+    @include push($i of 12)
+  }
 }
