@@ -1,12 +1,14 @@
 class GameSession < ActiveRecord::Base
   has_many :rounds, -> { eager_load(:participants) }, dependent: :destroy
   has_many :game_sessions_users, -> { eager_load(:user) }, dependent: :destroy, inverse_of: :game_session
-  with_options through: :game_sessions_users, source: :user do
-    has_many :players
-    has_many :spies,
-             -> { where(game_sessions_users: { fraction: GameSessionsUser::fractions[GAME_FRACTION_SPIES] }) }
-    has_many :resistance,
-             -> { where(game_sessions_users: { fraction: GameSessionsUser::fractions[GAME_FRACTION_RESISTANCE] }) }
+  with_options through: :game_sessions_users, source: :user do |game|
+    game.has_many :players
+    game.has_many :spies,
+                  -> { where(game_sessions_users:
+                               { fraction: GameSessionsUser::fractions[GAME_FRACTION_SPIES] }) }
+    game.has_many :resistance,
+                  -> { where(game_sessions_users:
+                               { fraction: GameSessionsUser::fractions[GAME_FRACTION_RESISTANCE] }) }
   end
 
   enum winner: GAME_FRACTIONS
@@ -22,6 +24,15 @@ class GameSession < ActiveRecord::Base
 
   accepts_nested_attributes_for :game_sessions_users
   accepts_nested_attributes_for :rounds, reject_if: :all_blank
+
+  # Returns winners for current game
+  #
+  # @return []ActiveRecord::AssociationRelation, nil]
+  def winners
+    return unless winner
+
+    players.where(game_sessions_users: { fraction: winner })
+  end
 
   # Iterates +GameSession+ rounds and returns their winners as Hash:
   #

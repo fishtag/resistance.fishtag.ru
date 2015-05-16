@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
   include GameSessionsAssociations
+  include WinMath
 
   def win_percentage
     count_win_percentage(won_game_sessions, finished_game_sessions)

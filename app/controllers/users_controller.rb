@@ -9,6 +9,8 @@ class UsersController < ApplicationController
   end
 
   def show
+    gon.jbuilder
+
     respond_with user
   end
 end
