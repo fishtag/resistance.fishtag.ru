@@ -1,5 +1,5 @@
 class GameSession < ActiveRecord::Base
-  has_many :rounds, dependent: :destroy
+  has_many :rounds, -> { eager_load(:participants) }, dependent: :destroy
   has_many :game_sessions_users, -> { eager_load(:user) }, dependent: :destroy, inverse_of: :game_session
   with_options through: :game_sessions_users, source: :user do
     has_many :players

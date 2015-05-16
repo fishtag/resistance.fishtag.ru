@@ -1,16 +1,21 @@
 section
-  header.column-12
-    .column-6
-      = game_session.play_date
-    .column-6
+  header.column-12.nest
+    .column-6.push-3
       = game_session.winner
-
-  .column-12
     .column-3
+      = game_session.play_date
+  .column-12.nest
+    .column-3
+      | Resistance
       ul
-        - game_session.game_sessions_users.each do |player|
-          li #{player.name} (#{player.fraction})
-    .column-9
+        - game_session.resistance.each do |player|
+          li #{player.name}
+    .column-6
       ul
         - game_session.rounds.each do |round|
           li #{round.participants.map(&:name).join(' | ')} - #{round.winner} win
+    .column-3
+      | Spies
+      ul
+        - game_session.spies.each do |player|
+          li #{player.name}
