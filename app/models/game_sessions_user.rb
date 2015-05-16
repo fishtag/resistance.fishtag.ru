@@ -5,4 +5,6 @@ class GameSessionsUser < ActiveRecord::Base
   belongs_to :user, counter_cache: :game_sessions_count
 
   validates :fraction, presence: true, if: ->(user) { user.game_session.finished? }
+
+  delegate :name, to: :user
 end
