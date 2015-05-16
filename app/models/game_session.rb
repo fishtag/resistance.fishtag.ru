@@ -1,17 +1,17 @@
 class GameSession < ActiveRecord::Base
+  enum winner: GAME_FRACTIONS
+
   has_many :rounds, -> { eager_load(:participants) }, dependent: :destroy
   has_many :game_sessions_users, -> { eager_load(:user) }, dependent: :destroy, inverse_of: :game_session
   with_options through: :game_sessions_users, source: :user do |game|
     game.has_many :players
     game.has_many :spies,
                   -> { where(game_sessions_users:
-                               { fraction: GameSessionsUser::fractions[GAME_FRACTION_SPIES] }) }
+                               { fraction: self::winners[GAME_FRACTION_SPIES] }) }
     game.has_many :resistance,
                   -> { where(game_sessions_users:
-                               { fraction: GameSessionsUser::fractions[GAME_FRACTION_RESISTANCE] }) }
+                               { fraction: self::winners[GAME_FRACTION_RESISTANCE] }) }
   end
-
-  enum winner: GAME_FRACTIONS
 
   validates :play_date, presence: true
   validates :players, length: { in: 5..10 }
