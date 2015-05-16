@@ -18,5 +18,6 @@
 //= require react_ujs
 //= require turbolinks
 //= require cocoon
+//= require chart.min
 //= require_tree ./views
 //= require_tree ./react
