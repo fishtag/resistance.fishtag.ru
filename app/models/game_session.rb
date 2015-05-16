@@ -1,7 +1,13 @@
 class GameSession < ActiveRecord::Base
   has_many :rounds, dependent: :destroy
   has_many :game_sessions_users, -> { eager_load(:user) }, dependent: :destroy, inverse_of: :game_session
-  has_many :players, through: :game_sessions_users, source: :user
+  with_options through: :game_sessions_users, source: :user do
+    has_many :players
+    has_many :spies,
+             -> { where(game_sessions_users: { fraction: GameSessionsUser::fractions[GAME_FRACTION_SPIES] }) }
+    has_many :resistance,
+             -> { where(game_sessions_users: { fraction: GameSessionsUser::fractions[GAME_FRACTION_RESISTANCE] }) }
+  end
 
   enum winner: GAME_FRACTIONS
 
