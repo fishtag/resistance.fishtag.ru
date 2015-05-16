@@ -12,8 +12,8 @@ class GameSession < ActiveRecord::Base
   enum winner: GAME_FRACTIONS
 
   validates :play_date, presence: true
-  validates :game_sessions_users, length: { in: 5..10 }
-  validates_associated :game_sessions_users
+  validates :players, length: { in: 5..10 }
+  validates_associated :game_sessions_users, if: :persisted?
 
   before_validation :assign_finished
   before_save :assign_winner

@@ -18,4 +18,5 @@
 //= require react_ujs
 //= require turbolinks
 //= require cocoon
+//= require_tree ./views
 //= require_tree ./react

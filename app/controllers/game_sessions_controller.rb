@@ -2,6 +2,7 @@ class GameSessionsController < ApplicationController
   OBJECT_NAME = :game_session
   PERMITTED_ATTRIBUTES = [
     :play_date,
+    :player_ids => [],
     :game_sessions_users_attributes => %i(id user_id fraction _destroy),
     :rounds_attributes => [:id, :winner, :participant_ids => []]]
 
