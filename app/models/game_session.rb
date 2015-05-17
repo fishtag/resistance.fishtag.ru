@@ -25,15 +25,6 @@ class GameSession < ActiveRecord::Base
   accepts_nested_attributes_for :game_sessions_users
   accepts_nested_attributes_for :rounds, reject_if: :all_blank
 
-  # Returns winners for current game
-  #
-  # @return []ActiveRecord::AssociationRelation, nil]
-  def winners
-    return unless winner
-
-    players.where(game_sessions_users: { fraction: winner })
-  end
-
   # Iterates +GameSession+ rounds and returns their winners as Hash:
   #
   # @example
