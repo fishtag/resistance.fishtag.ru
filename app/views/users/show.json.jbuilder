@@ -1,6 +1,6 @@
 json.user do
   json.chart_data do
-    json.labels ((GameSession.finished.count - user.per_game_percentage.size)...GameSession.finished.count).to_a
+    json.labels user.per_game_percentage.map { |game_info| game_info[:play_date] }
     json.datasets [
       {
         label: 'All games',

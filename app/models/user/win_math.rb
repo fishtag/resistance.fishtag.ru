@@ -7,7 +7,7 @@ class User
         games_won_total = games_won_as_spy = games_won_as_resistance = 0
         total_resistance_games = total_spy_games = total_games = 0
 
-        finished_game_sessions.order('play_date DESC').map do |game|
+        finished_game_sessions.order(:play_date).map do |game|
           total_games += 1
           total_spy_games += 1 if spies_game_sessions.include?(game)
           total_resistance_games += 1 if resistance_game_sessions.include?(game)
@@ -17,6 +17,7 @@ class User
           games_won_as_resistance += 1 if won_resistance_game_sessions.include?(game)
 
           {
+            play_date: game.play_date,
             total_games: total_games,
             games_won_total: games_won_total,
             total_win_percentage: (games_won_total / total_games.to_f * 100).round(2),
