@@ -3,14 +3,14 @@ class GameSession < ActiveRecord::Base
 
   has_many :rounds, -> { eager_load(:participants) }, dependent: :destroy
   has_many :game_sessions_users, -> { eager_load(:user) }, dependent: :destroy, inverse_of: :game_session
-  with_options through: :game_sessions_users, source: :user do |game|
-    game.has_many :players
-    game.has_many :spies,
-                  -> { where(game_sessions_users:
-                               { fraction: self::winners[GAME_FRACTION_SPIES] }) }
-    game.has_many :resistance,
-                  -> { where(game_sessions_users:
-                               { fraction: self::winners[GAME_FRACTION_RESISTANCE] }) }
+  with_options through: :game_sessions_users, source: :user do
+    has_many :players
+    has_many :spies,
+             -> { where(game_sessions_users:
+                          { fraction: GameSession::winners[GAME_FRACTION_SPIES] }) }
+    has_many :resistance,
+             -> { where(game_sessions_users:
+                          { fraction: GameSession::winners[GAME_FRACTION_RESISTANCE] }) }
   end
 
   validates :play_date, presence: true
