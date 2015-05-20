@@ -12,6 +12,7 @@ class GameSessionsController < ApplicationController
   expose(:game_session, attributes: :permitted_params)
 
   def index
+    self.game_sessions = game_sessions.order('play_date DESC')
     gon.jbuilder
 
     respond_with :game_sessions
