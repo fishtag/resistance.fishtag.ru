@@ -15,6 +15,6 @@
         {@props.data.play_date}
       </div>
       <div className='winner'>
-        {@props.data.winner}
+        <a href={Routes.game_session_path(@props.data.id)}>{@props.data.winner}</a>
       </div>
     </div>
