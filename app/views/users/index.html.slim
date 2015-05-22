@@ -12,7 +12,7 @@ table
     th= t('.spy_win_percent')
     th= t('.resistance_win_percent')
 
-  - users.each do |user|
+  - users.sort_by(&:win_percentage).reverse.each do |user|
     tr
       td= link_to user.name, user_path(user)
       td= user.finished_game_sessions.size
