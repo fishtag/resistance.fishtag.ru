@@ -11,6 +11,7 @@ class UserShow
     @userChart = new Chart(context).Line(data,
       datasetFill: true,
       datasetStrokeWidth: 1,
+      bezierCurve: false,
       pointDot: false,
       scaleShowHorizontalLines: false)
 
